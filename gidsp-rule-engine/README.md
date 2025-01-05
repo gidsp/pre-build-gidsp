@@ -1,5 +1,6 @@
-# 先授权再构建
+# 先授权
 chmod +x gradlew
+#再构建
 ./gradlew clean build
 
 ##注意
