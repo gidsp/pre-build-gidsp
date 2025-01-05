@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.fastable.gidsp</groupId>
+  <version>2.42</version>
+  <artifactId>gidsp-preBuilds</artifactId>
+  <packaging>pom</packaging>
+  <name>gidsp Pre-Build Warper Project</name>
+
+  <modules>
+    <module>json-tree</module>
+    <module>quick</module>
+    <module>staxwax</module>
+    <module>sms-compression</module>
+    <module>gidsp-antlr-expression-parser</module>
+  </modules>
+
+  <properties>
+    <rootDir />
+  </properties>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>3.0.0</version>
+        <executions>
+          <execution>
+            <id>install-rule-engine</id>
+            <phase>install</phase>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <configuration>
+              <executable>mvn</executable>
+              <arguments>
+                <argument>install:install-file</argument>
+                <argument>-Dfile=${project.basedir}/gidsp-rule-engine/build/libs/rule-engine-jvm-3.2.2.jar</argument>
+                <argument>-DgroupId=org.fastable.gidsp.rules</argument>
+                <argument>-DartifactId=rule-engine-jvm</argument>
+                <argument>-Dversion=3.2.1</argument>
+                <argument>-Dpackaging=jar</argument>
+              </arguments>
+            </configuration>
+          </execution>
+
+<!-- 安装 https://mvnrepository.com/artifact/javax.media/jai_imageio -->
+        <execution>
+          <id>install-jai-imageio</id>
+          <phase>install</phase> <!-- 将其绑定到 install 生命周期 -->
+          <goals>
+            <goal>exec</goal>
+          </goals>
+          <configuration>
+            <executable>mvn</executable>
+            <arguments>
+              <argument>install:install-file</argument>
+              <argument>-Dfile=${project.basedir}/libs/jai_imageio-1.1.1.jar</argument>
+              <argument>-DgroupId=javax.media</argument>
+              <argument>-DartifactId=jai_imageio</argument>
+              <argument>-Dversion=1.1.1</argument>
+              <argument>-Dpackaging=jar</argument>
+            </arguments>
+          </configuration>
+        </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
