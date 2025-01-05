@@ -1,9 +1,10 @@
-# 先授权
-chmod +x gradlew
-#再构建
-./gradlew clean build
+## 先授权
+`chmod +x gradlew`
 
-##注意
+## 再构建
+`./gradlew clean build`
+
+## 注意
 删除此文件将构建失败。
 
 用 gradle wrapper 命令生成的 gradlew 可能会有问题。
