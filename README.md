@@ -63,4 +63,18 @@ sdk install gradle 8.12
 ```
 sudo sh build.sh
 ```
+——————
+## 在Docker 中构建项目
+另一种方案是在Docker中构建项目，
+### 构建编译环境 
+下载源代码根目录中的 Dockerfile
+`sudo docker build -t gidsp-java7 .`
+### 挂载主机源码文件夹
+`sudo docker run -it -v /home/ubuntu/gidsp-core:/app gidsp-java7 /bin/bash`
+### 再次进入
+```
+sudo docker stop
+sudo docker start
+sudo docker exec -it <生成的docker id> /bin/bash
+```
 
